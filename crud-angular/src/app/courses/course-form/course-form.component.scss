@@ -1,0 +1,33 @@
+.card {
+  max-width: 80%;
+  margin: 2em auto;
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+}
+
+.min-width  {
+  width: 100%;
+}
+
+//.card {
+//  padding: 16px;
+//  form {
+//    display: flex;
+//    flex-direction: column;
+//    gap: 8px;
+//  }
+//}
+
+.example-header-image {
+  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: cover;
+}

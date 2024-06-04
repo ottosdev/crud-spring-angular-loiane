@@ -1,0 +1,33 @@
+GET http://localhost:8080/api/courses
+Accept: application/json
+
+###
+
+POST http://localhost:8080/api/courses
+Content-Type: application/json
+
+{
+  "name": "Javaa",
+  "category": "Back"
+}
+
+###
+
+GET http://localhost:8080/api/courses/1
+Accept: application/json
+
+###
+PUT http://localhost:8080/api/courses/2
+Content-Type: application/json
+
+{
+  "name": "Java 2",
+  "category": "Back-end"
+}
+
+###
+
+DELETE http://localhost:8080/api/courses/2
+Accept: application/json
+
+###
