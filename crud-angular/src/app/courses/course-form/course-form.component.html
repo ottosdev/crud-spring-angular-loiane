@@ -5,8 +5,8 @@
     <form [formGroup]="form">
       <mat-form-field>
         <input matInput placeholder="Nome" formControlName="name" #name>
-        <mat-hint>{{name.value?.length|| 0}}/100</mat-hint>
-        <mat-error *ngIf="form.get('name')?.invalid">{{getErrorMessage('name')}}</mat-error>
+        <mat-hint>{{ name.value.length || 0 }}/100</mat-hint>
+        <mat-error *ngIf="form.get('name')?.invalid">{{ formService.getErrorMessage(form, 'name') }}</mat-error>
       </mat-form-field>
 
       <mat-form-field>
@@ -16,13 +16,54 @@
           <mat-option value="Front-end">Front-end</mat-option>
           <mat-option value="Back-end">Back-End</mat-option>
         </mat-select>
-        <mat-error *ngIf="form.get('category')?.invalid">{{getErrorMessage('category')}}</mat-error>
+        <mat-error *ngIf="form.get('category')?.invalid">{{ formService.getErrorMessage(form, 'category') }}</mat-error>
       </mat-form-field>
+
+
+      <mat-toolbar>
+        <span>Aulas</span>
+        <button mat-icon-button color="primary" aria-label="Adicionar uma nova aula" (click)="addNewLesson()">
+          <mat-icon>add</mat-icon>
+        </button>
+      </mat-toolbar>
+
+      <mat-error *ngIf="formService.isFormArrayRequired(form, 'lessons')">Adicione pelo menos uma aula.</mat-error>
+
+      <table style="width: 100%"
+             formArrayName="lessons"
+             *ngFor="let lesson of getLessonsFormArray(); let i = index">
+        <tr [formGroupName]="i">
+          <td style="width: 65%">
+            <mat-form-field style="width: 100%">
+              <mat-label>Nome da aula</mat-label>
+              <input matInput placeholder="Nome" formControlName="name">
+              <mat-error *ngIf="getLessonsFormArray()[i].get('name')?.invalid">
+                {{ formService.getFormArrayFieldErrorMessage(form, 'lessons', 'name', i) }}
+              </mat-error>
+            </mat-form-field>
+          </td>
+          <td style="width: 30%">
+            <mat-form-field style="width: 100%">
+              <mat-label>URL</mat-label>
+              <span matTextPrefix>https://youtu.be/</span>
+              <input matInput placeholder="Nome" formControlName="url">
+              <mat-error
+                *ngIf="getLessonsFormArray()[i].get('url')?.invalid"> {{ formService.getFormArrayFieldErrorMessage(form, 'lessons', 'url', i) }}
+              </mat-error>
+            </mat-form-field>
+          </td>
+          <td>
+            <button color="accent" mat-icon-button (click)="removeLesson(i)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </tr>
+      </table>
     </form>
   </mat-card-content>
 
   <mat-card-actions class="actions">
-    <button color="primary" mat-raised-button [disabled]="form.invalid" (click)="handleSubmit()">Salvar</button>
+    <button color="primary" mat-raised-button (click)="handleSubmit()">Salvar</button>
     <button mat-raised-button (click)="handleCancel()">Cancelar</button>
   </mat-card-actions>
 </mat-card>
