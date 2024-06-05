@@ -8,7 +8,12 @@ Content-Type: application/json
 
 {
   "name": "Javaa",
-  "category": "Back"
+  "category": "Back",
+  "lessons": [
+    {
+
+    }
+  ]
 }
 
 ###
