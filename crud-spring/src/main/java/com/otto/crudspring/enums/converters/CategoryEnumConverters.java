@@ -9,11 +9,11 @@ import java.util.stream.Stream;
 @Converter(autoApply = true)
 public class CategoryEnumConverters implements AttributeConverter<CategoryEnum, String> {
     @Override
-    public String convertToDatabaseColumn(CategoryEnum categoryEnum) {
-        if (categoryEnum == null) {
+    public String convertToDatabaseColumn(CategoryEnum category) {
+        if (category == null) {
             return null;
         }
-        return categoryEnum.getValue();
+        return category.getValue();
     }
 
     @Override
@@ -23,6 +23,7 @@ public class CategoryEnumConverters implements AttributeConverter<CategoryEnum, 
         }
         return Stream.of(CategoryEnum.values())
                 .filter(c -> c.getValue().equals(value))
-                .findFirst().orElseThrow(IllegalArgumentException::new);
+                .findFirst()
+                .orElseThrow(IllegalArgumentException::new);
     }
 }

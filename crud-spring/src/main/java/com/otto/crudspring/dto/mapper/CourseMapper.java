@@ -5,6 +5,7 @@ import com.otto.crudspring.dto.LessonDTO;
 import com.otto.crudspring.enums.CategoryEnum;
 import com.otto.crudspring.model.Course;
 import com.otto.crudspring.model.Lesson;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -57,8 +58,8 @@ public class CourseMapper {
         }
 
         return switch (value) {
-            case "Front-end" -> CategoryEnum.FRONTEND;
-            case "Back-end" -> CategoryEnum.BACKEND;
+            case "Front-end" -> CategoryEnum.FRONT_END;
+            case "Back-end" -> CategoryEnum.BACK_END;
             default -> throw new IllegalArgumentException("Invalid category value: " + value);
         };
     }

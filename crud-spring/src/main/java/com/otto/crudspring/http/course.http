@@ -1,4 +1,4 @@
-GET http://localhost:8080/api/courses
+GET http://localhost:8080/api/courses?page=0&pageSize=15
 Accept: application/json
 
 ###
@@ -8,10 +8,15 @@ Content-Type: application/json
 
 {
   "name": "Javaa",
-  "category": "Back",
+  "category": "Front-end",
   "lessons": [
     {
-
+      "name": "Introducao",
+      "url": "21312312311"
+    },
+    {
+      "name": "Introducao2",
+      "url": "21312312311"
     }
   ]
 }
@@ -22,12 +27,22 @@ GET http://localhost:8080/api/courses/1
 Accept: application/json
 
 ###
-PUT http://localhost:8080/api/courses/2
+PUT http://localhost:8080/api/courses/-1
 Content-Type: application/json
 
 {
-  "name": "Java 2",
-  "category": "Back-end"
+  "name": "Javaa",
+  "category": "Back-end",
+  "lessons": [
+    {
+      "name": "Introducao",
+      "url": "21312312311"
+    },
+    {
+      "name": "Introducao2",
+      "url": "21312312311"
+    }
+  ]
 }
 
 ###

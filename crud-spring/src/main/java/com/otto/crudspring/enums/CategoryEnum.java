@@ -1,7 +1,7 @@
 package com.otto.crudspring.enums;
 
 public enum CategoryEnum {
-    BACKEND("Back-end"), FRONTEND("Front-end");
+    BACK_END("Back-end"), FRONT_END("Front-end");
 
     private String value;
 
@@ -15,8 +15,6 @@ public enum CategoryEnum {
 
     @Override
     public String toString() {
-        return "CategoryEnum{" +
-                "value='" + value + '\'' +
-                '}';
+        return value;
     }
 }

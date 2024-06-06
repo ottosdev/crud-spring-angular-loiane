@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {Course} from "../courses/model/course";
 import {HttpClient} from "@angular/common/http";
 import {first, Observable, take, tap} from "rxjs";
+import {CoursePage} from "../courses/model/course-page";
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +14,13 @@ export class CourseService {
   constructor(private http: HttpClient) {
   }
 
-  list(): Observable<Course[]> {
-    return this.http.get<Course[]>(`${this.API_URL}`, {})
+  list(page: number = 0, pageSize: number= 10): Observable<CoursePage> {
+    return this.http.get<CoursePage>(`${this.API_URL}`, {
+      params: {
+        page,
+        pageSize
+      }
+    })
       .pipe(
         first(), // Estou interessado apenas na primeira resposta que o servidor me enviar
         // tap(courses => console.log(courses))
